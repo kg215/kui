@@ -19,6 +19,12 @@ a{
     text-decoration: none;
   }
 }
+.center{
+  text-align: center;
+}
+.middle{
+  vertical-align: middle;
+}
 .safe-a{
   cursor: pointer;
 }
@@ -351,7 +357,6 @@ a{
   grid-row-gap: 10px;
   grid-column-gap: 10px; 
   word-break: break-all;
-  text-align: center;
 }
 .grid-col-loop(@n) when(@n>0){
   .col-@{n}{
@@ -361,4 +366,47 @@ a{
 }
 .grid-col-loop(24);
 /* grid布局end */
+
+/*from*/
+.ks-form{
+  box-sizing: border-box;
+}
+.ks-form__item{
+  display: flex;
+  flex-wrap: nowrap;
+  box-sizing: border-box;
+  width: 100%;
+}
+.ks-form__label-col{
+  box-sizing: border-box;
+  padding: 6px;
+  width: 33%;
+  min-width: 80px;
+  max-width: 200px;
+  text-align: right;
+}
+.required label {
+  position: relative;
+  color: rgba(0,0,0,0.85);
+  &::before {
+    display: inline-block;
+    content: "*";
+    position: absolute;
+    top: 2px;
+    left: -12px;
+    font-size: 18px;
+    color: #f5222d;
+  }
+  &:after{
+    content: ':';
+    position: relative;
+    top: -0.5px;
+    margin: 0 8px 0 2px;
+  }
+}
+.ks-form__controller{
+  padding: 6px;
+  width: auto;
+}
+
 

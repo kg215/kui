@@ -8,7 +8,7 @@ const Icons =  lazy(()=>import(/*webpackChunkName: "Icons"*/"../view/icon/Icons"
 const Buttons =  lazy(()=>import(/*webpackChunkName: "Buttons"*/"../view/button/Buttons"));
 const Flex =  lazy(()=>import(/*webpackChunkName: "Flex"*/"../view/flex/Flex"));
 const Grid =  lazy(()=>import(/*webpackChunkName: "Grid"*/"../view/grid/Grid"));
-
+const FormView = lazy(()=>import(/*webpackChunkName: "Grid"*/"../view/form/FormView"));
 interface MenuItemTitlesProps {
     id:string|number,
     title:string,
@@ -23,7 +23,7 @@ export const menus:MenuItemTitlesProps[] = [
             {id:_.uniqueId(),title:"按钮",path:"/buttons",component:Buttons},
             {id:_.uniqueId(),title:"Icon图标",path:"/icons",component:Icons},
             {id:_.uniqueId(),title:"Flex",path:"/flex",component:Flex},
-            {id:_.uniqueId(),title:"Grid",path:"/grid",component:Grid}
+            {id:_.uniqueId(),title:"Grid",path:"/grid",component:Grid},
         ]
     },
     {id:_.uniqueId(),title:"布局",
@@ -31,7 +31,11 @@ export const menus:MenuItemTitlesProps[] = [
             {id:_.uniqueId(),title:"Layout",path:"/grid"},
         ]
     },
-    {id:_.uniqueId(),title:"菜单三"},
+    {id:_.uniqueId(),title:"数据处理",
+        children:[
+            {id:_.uniqueId(),title:"Form表单",path:"/FormView",component:FormView},
+        ]
+    },
 ];
 
 export const MenuItems:React.FC<any>=function(){

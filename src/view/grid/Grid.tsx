@@ -9,7 +9,7 @@ class Grid extends React.Component {
             arr1.fill(i+1,i,i+1);
         }
         return <Fragment>
-            <Row style={{backgroundColor:"#EEEEEE",marginBottom:10,padding:6,color:"#FFF"}}>
+            <Row center style={{backgroundColor:"#EEEEEE",marginBottom:10,color:"#FFF",padding:6}}>
                 {
                     arr1.map((v)=>{
                         return <Col key={"col"+v} span={1} style={{backgroundColor:"#DBDBDB"}}>
@@ -18,7 +18,7 @@ class Grid extends React.Component {
                     })
                 }
             </Row>
-            <Row style={{backgroundColor:"#EEEEEE",marginBottom:10,padding:6,color:"#FFF"}}>
+            <Row center style={{backgroundColor:"#EEEEEE",marginBottom:10,padding:6,color:"#FFF"}}>
                 {
                     arr1.slice(0,12).map((v)=>{
                         return <Col key={"col"+v} span={2} style={{backgroundColor:"#DBDBDB"}}>
@@ -27,7 +27,7 @@ class Grid extends React.Component {
                     })
                 }
             </Row>
-            <Row style={{backgroundColor:"#EEEEEE",marginBottom:10,padding:6,color:"#FFF"}}>
+            <Row center style={{backgroundColor:"#EEEEEE",marginBottom:10,padding:6,color:"#FFF"}}>
                 <Col span={4} start={1} end={4} style={{backgroundColor:"#DBDBDB"}} >
                     span4
                 </Col>
@@ -50,7 +50,7 @@ class Grid extends React.Component {
                     span4
                 </Col>
             </Row>
-            <Row style={{backgroundColor:"#EEEEEE",marginBottom:10,padding:6,color:"#FFF"}}>
+            <Row center style={{backgroundColor:"#EEEEEE",marginBottom:10,padding:6,color:"#FFF"}}>
                 {
                     arr1.slice(0,2).map((v)=>{
                         return <Col key={"col"+v} span={12} style={{backgroundColor:"#DBDBDB"}}>
@@ -59,7 +59,7 @@ class Grid extends React.Component {
                     })
                 }
             </Row>
-            <Row style={{backgroundColor:"#EEEEEE",marginBottom:10,padding:6,color:"#FFF"}}>
+            <Row center style={{backgroundColor:"#EEEEEE",marginBottom:10,padding:6,color:"#FFF"}}>
                 <Col span={24} style={{backgroundColor:"#abcdef",height:50,lineHeight:"50px"}} >
                     header
                 </Col>
