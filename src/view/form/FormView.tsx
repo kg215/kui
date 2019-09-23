@@ -1,8 +1,10 @@
 import React,{Fragment} from "react";
 import Form, {
+    CheckBoxGroup,
     CheckBox,
     Input
 } from "../../../lib/form";
+import {Select} from "../../../lib/form/Select";
 interface FormViewState{
     inputValue?:string
 }
@@ -14,8 +16,8 @@ class FormView extends React.Component{
 
     render():JSX.Element{
         return <Form>
-            <Form.Item label={"文本输入框"}>
-                <Input required onChange={(v)=>{
+            <Form.Item required label={"文本输入框"}>
+                <Input onChange={(v)=>{
                     this.setState({inputValue:v});
                 }} />
                 {
@@ -31,11 +33,28 @@ class FormView extends React.Component{
                 }} type={"textarea"} />
             </Form.Item>
             <Form.Item label={"多选"}>
-                <CheckBox
+                <CheckBoxGroup
+                    defaultValue={[2]}
                     options={[
-                        {text:"多选哦1"}
+                        {value:1,text:"多个CheckBox1"},
+                        {value:"2",text:"多个CheckBox2"},
+                        {value:"3",text:"多个CheckBox3"},
                     ]}
+                    onChange={
+                        (v,{event})=>{
+                            console.log(v)
+                        }
+                    }
                 />
+                <CheckBox checked onChange={(v)=>{
+                    console.log(v);
+                }} text="单个checkbox" />
+            </Form.Item>
+            <Form.Item required label={"下拉框"}>
+                <Select options={[
+                    {text:"下拉选项1",value:"1"},
+                    {text:"下拉选项2",value:"2"}
+                ]} />
             </Form.Item>
         </Form>
     }

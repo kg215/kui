@@ -1,8 +1,12 @@
-import React, {ChangeEvent, RefForwardingComponent, forwardRef, Ref} from "react";
+import React, {ChangeEvent, RefForwardingComponent, forwardRef, Ref, ReactNode} from "react";
 import {StyledProps} from "../_type";
 import classNames from "classnames";
 import {CheckBox} from "./CheckBox";
-
+export interface optionsProps<T=string|number>{
+    text?:T;
+    component?:ReactNode;
+    value?:T;
+}
 export interface InputProps extends StyledProps,Omit<
         React.InputHTMLAttributes<HTMLInputElement> &
         React.TextareaHTMLAttributes<HTMLTextAreaElement>,

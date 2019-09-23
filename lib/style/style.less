@@ -458,11 +458,15 @@ a{
     box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
   }
 }
-.ks-check-group>label{
+.ks-check{
+  display: inline-block;
+}
+.ks-check>label{
   position: relative;
   padding-left: 14px;
+  margin-right: 18px;
 }
-.ks-check-group input[type=checkbox]{
+.ks-check input[type=checkbox]{
   visibility: hidden;
   &+span.checkbox{
     position: absolute;
@@ -488,6 +492,11 @@ a{
       width: 100%;
     }
   }
+}
+.ks-select{
+  height: 26px;
+  padding: 0 12px;
+  margin-top: -4px;
 }
 
 
