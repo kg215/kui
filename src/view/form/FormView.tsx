@@ -2,7 +2,7 @@ import React,{Fragment} from "react";
 import Form, {
     CheckBoxGroup,
     CheckBox,
-    Input
+    Input, Upload
 } from "../../../lib/form";
 import {Select} from "../../../lib/form/Select";
 interface FormViewState{
@@ -55,6 +55,9 @@ class FormView extends React.Component{
                     {text:"下拉选项1",value:"1"},
                     {text:"下拉选项2",value:"2"}
                 ]} />
+            </Form.Item>
+            <Form.Item required label={"文件上传"}>
+                <Upload />
             </Form.Item>
         </Form>
     }

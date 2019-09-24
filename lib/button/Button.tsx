@@ -4,7 +4,7 @@ import classNames from "classnames";
 export interface ButtonProps extends React.HTMLAttributes<HTMLDivElement>{
     type?: "dashed"|"primary"|"danger"|"link"|"default",
     className?:string,
-    onClick?:(e:MouseEvent<HTMLElement>)=>void,
+    onClick?:(e?:MouseEvent<HTMLElement>)=>void,
     children?:ReactNode,
     style?:React.CSSProperties
 }
