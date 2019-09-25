@@ -5,6 +5,8 @@ import Form, {
     Input, Upload
 } from "../../../lib/form";
 import {Select} from "../../../lib/form/Select";
+import {Button} from "../../../lib/button";
+import {func} from "prop-types";
 interface FormViewState{
     inputValue?:string
 }
@@ -57,7 +59,11 @@ class FormView extends React.Component{
                 ]} />
             </Form.Item>
             <Form.Item required label={"文件上传"}>
-                <Upload />
+                <Upload onChange={function (files) {
+                    console.log(files)
+                }}>
+                    <Button>上传文件</Button>
+                </Upload>
             </Form.Item>
         </Form>
     }

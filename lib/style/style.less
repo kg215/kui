@@ -104,11 +104,10 @@ a{
 .ks-btn{
   box-shadow: none;
   border-radius: 4px;
-  margin-right: 8px;
-  margin-bottom: 12px;
   line-height: 1.5;
   text-align: center;
   cursor: pointer;
+  word-break: keep-all;
   height: 32px;
   padding: 0 15px;
   font-size: 14px;
@@ -431,13 +430,12 @@ a{
   }
 }
 .ks-form__controller{
-  padding: 6px;
+  padding: 4px 6px 6px 6px;
   width: auto;
 }
 
 .ks-input[type=text],textarea.ks-input{
   padding: 4px 8px;
-  margin-top: -4px;
   border-radius: 4px;
   transition: all .3s;
   border: 1px solid @border-color-default;
@@ -497,10 +495,13 @@ a{
 .ks-select{
   height: 26px;
   padding: 0 12px;
-  margin-top: -4px;
   cursor: pointer;
 }
 
+.ks-upload-input{
+  visibility: hidden;
+  display: none;
+}
 
 
 
