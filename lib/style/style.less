@@ -409,6 +409,13 @@ a{
   min-width: 80px;
   max-width: 200px;
   text-align: right;
+
+  &:after{
+    content: ':';
+    position: relative;
+    top: -0.5px;
+    margin: 0 8px 0 2px;
+  }
 }
 .required .ks-form__label-col label {
   position: relative;
@@ -421,12 +428,6 @@ a{
     left: -12px;
     font-size: 18px;
     color: #f5222d;
-  }
-  &:after{
-    content: ':';
-    position: relative;
-    top: -0.5px;
-    margin: 0 8px 0 2px;
   }
 }
 .ks-form__controller{
@@ -529,5 +530,73 @@ a{
   }
 }
 
+.ks-radio_wrapper{
+  position: relative;
+  display: inline-block;
+  color: rgba(0,0,0,0.65);
+  cursor: pointer;
+  box-sizing: border-box;
+  &+&{
+    margin-left: 8px;
+  }
+  .ks-radio{
+    box-sizing: border-box;
+    position: relative;
+    display: inline-block;
+    &>input[type=radio]{
+      opacity: 0;
+      position: absolute;
+    }
+    .ks-radio_inner{
+      box-sizing: border-box;
+      position: relative;
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 50%;
+      border: 1px solid #d9d9d9;
+      &::after{
+        content: ' ';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 8px;
+        height: 8px;
+        transform: scale(0);
+        opacity: 0;
+        background-color: #1890ff;
+        border-radius: 8px;
+      }
+    }
+    &>input[type=radio]:checked+.ks-radio_inner{
+      border-color: #1890ff;
+      animation: radioEffect .36s ease-in-out;
+      &::after{
+        transform: scale(1);
+        opacity: 1;
+        transition: all .3s cubic-bezier(.78, .14, .15, .86);
+      }
+    }
+  }
+  .ks-radio_text{
+    vertical-align: middle;
+    padding: 0 8px;
+  }
+}
+@keyframes radioEffect {
+  0% {
+    transform: scale(.9);
+    opacity: 1
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: .8
+  }
+}
+
+.ks-radio_group{
+  display: inline-block;
+}
 
 

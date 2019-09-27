@@ -2,7 +2,7 @@ import React,{Fragment} from "react";
 import Form, {
     CheckBoxGroup,
     CheckBox,
-    Input, Upload
+    Input, Upload, Radio
 } from "../../../lib/form";
 import {Select} from "../../../lib/form/Select";
 import {Button} from "../../../lib/button";
@@ -34,7 +34,12 @@ class FormView extends React.Component{
                 }} type={"textarea"} />
             </Form.Item>
             <Form.Item label={"多选"}>
-                <CheckBoxGroup
+                <CheckBox checked onChange={(v)=>{
+                    console.log(v);
+                }} text="单个checkbox" />
+            </Form.Item>
+            <Form.Item label={"多选Group"}>
+                <CheckBox.Group
                     defaultValue={[2]}
                     options={[
                         {value:1,text:"多个CheckBox1"},
@@ -51,13 +56,28 @@ class FormView extends React.Component{
                     console.log(v);
                 }} text="单个checkbox" />
             </Form.Item>
-            <Form.Item required label={"下拉框"}>
+            <Form.Item label={"单选"}>
+                <Radio name={"test"} value={"1"} />
+                <Radio name={"test"} value={"2"} />
+                <Radio name={"test"} value={"3"} />
+            </Form.Item>
+            <Form.Item label={"单选Group"}>
+                <Radio.Group defaultValue="1" onChange={(v)=>{
+                    console.log("单选Group:"+v);
+                }} options={[
+                    {text:"单选1",value:"1"},
+                    {text:"单选2",value:"2"},
+                    {text:"单选3",value:"3"},
+                    {text:"单选4",value:"4"},
+                ]} />
+            </Form.Item>
+            <Form.Item label={"下拉框"}>
                 <Select options={[
                     {text:"下拉选项1",value:"1"},
                     {text:"下拉选项2",value:"2"}
                 ]} />
             </Form.Item>
-            <Form.Item required label={"文件上传"}>
+            <Form.Item label={"文件上传"}>
                 <Upload showFiles onChange={function (files) { }}>
                     <Button>上传文件</Button>
                 </Upload>
