@@ -1,8 +1,6 @@
 import React,{FC} from "react";
 import classNames from "classnames";
 import {StyledProps} from "../_type";
-import Row from "../grid/Row";
-import Col from "../grid/Col";
 
 interface ProgressProps extends StyledProps{
     percent?:number;
@@ -16,7 +14,7 @@ export const Progress:FC<ProgressProps> = function(
         style
     }
 ){
-    style.lineHeight=parseInt(style.height as string)+"px";
+    style = Object.assign(style,{lineHeight:parseInt(style.height as string)+"px"});
     percent=Math.min(Math.max(percent,0),100);
     return <div className={"ks-progress"} style={style}>
         <div className={"ks-progress_wrapper"}>
