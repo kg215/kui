@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 import {HashRouter} from "react-router-dom";
 import {Layout} from "../../lib/layout"
 import {Menu} from "../../lib/menu"
-import _ from "lodash";
 import {AppRouter} from "./AppRouter";
 import {MenuItems} from "../config/menus";
 

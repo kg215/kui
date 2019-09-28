@@ -6,6 +6,7 @@ import Form, {
 } from "../../../lib/form";
 import {Select} from "../../../lib/form/Select";
 import {Button} from "../../../lib/button";
+import {Switch} from "../../../lib/form";
 interface FormViewState{
     inputValue?:string
 }
@@ -32,6 +33,11 @@ class FormView extends React.Component{
                 <Input required cols={30} rows={10} onChange={v=>{
                     console.log(v)
                 }} type={"textarea"} />
+            </Form.Item>
+            <Form.Item label={"Switch开关"}>
+                <Switch defaultValue={true} onChange={v=>{
+                    console.log(v)
+                }} />
             </Form.Item>
             <Form.Item label={"多选"}>
                 <CheckBox checked onChange={(v)=>{

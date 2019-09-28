@@ -8,7 +8,10 @@ const Icons =  lazy(()=>import(/*webpackChunkName: "Icons"*/"../view/icon/Icons"
 const Buttons =  lazy(()=>import(/*webpackChunkName: "Buttons"*/"../view/button/Buttons"));
 const Flex =  lazy(()=>import(/*webpackChunkName: "Flex"*/"../view/flex/Flex"));
 const Grid =  lazy(()=>import(/*webpackChunkName: "Grid"*/"../view/grid/Grid"));
-const FormView = lazy(()=>import(/*webpackChunkName: "Grid"*/"../view/form/FormView"));
+const FormView = lazy(()=>import(/*webpackChunkName: "FormView"*/"../view/form/FormView"));
+const Modals = lazy(()=>import(/*webpackChunkName: "Modals"*/"../view/modal/Modals"));
+const Progresses = lazy(()=>import(/*webpackChunkName: "Progresses"*/"../view/progress/Progresses"));
+const Messages = lazy(()=>import(/*webpackChunkName: "Progresses"*/"../view/message/Messages"));
 interface MenuItemTitlesProps {
     id:string|number,
     title:string,
@@ -34,6 +37,13 @@ export const menus:MenuItemTitlesProps[] = [
     {id:_.uniqueId(),title:"数据处理",
         children:[
             {id:_.uniqueId(),title:"Form表单",path:"/FormView",component:FormView},
+        ]
+    },
+    {id:_.uniqueId(),title:"反馈",
+        children:[
+            {id:_.uniqueId(),title:"弹出层",path:"/Modal",component:Modals},
+            {id:_.uniqueId(),title:"进度条",path:"/Progresses",component:Progresses},
+            {id:_.uniqueId(),title:"消息提示",path:"/Messages",component:Messages},
         ]
     },
 ];
