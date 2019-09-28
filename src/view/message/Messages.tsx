@@ -6,7 +6,7 @@ export default class Messages extends Component{
 
     handleOnClick=()=>{
         Message.alert({
-            message:"MessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessage"
+            message:"Message"
         });
     };
 

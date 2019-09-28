@@ -11,7 +11,10 @@ const Grid =  lazy(()=>import(/*webpackChunkName: "Grid"*/"../view/grid/Grid"));
 const FormView = lazy(()=>import(/*webpackChunkName: "FormView"*/"../view/form/FormView"));
 const Modals = lazy(()=>import(/*webpackChunkName: "Modals"*/"../view/modal/Modals"));
 const Progresses = lazy(()=>import(/*webpackChunkName: "Progresses"*/"../view/progress/Progresses"));
-const Messages = lazy(()=>import(/*webpackChunkName: "Progresses"*/"../view/message/Messages"));
+const Messages = lazy(()=>import(/*webpackChunkName: "Messages"*/"../view/message/Messages"));
+const Tabs = lazy(()=>import(/*webpackChunkName: "Tabs"*/"../view/tabs/Tabs"));
+const Paginations = lazy(()=>import(/*webpackChunkName: "Paginations"*/"../view/pagination/Paginations"));
+const Tables = lazy(()=>import(/*webpackChunkName: "Tables"*/"../view/tables/Tables"));
 interface MenuItemTitlesProps {
     id:string|number,
     title:string,
@@ -34,9 +37,16 @@ export const menus:MenuItemTitlesProps[] = [
             {id:_.uniqueId(),title:"Layout",path:"/grid"},
         ]
     },
+    {id:_.uniqueId(),title:"导航",
+        children:[
+            {id:_.uniqueId(),title:"?Tabs",path:"/Tabs",component:Tabs},
+            {id:_.uniqueId(),title:"?Paginations",path:"/Paginations",component:Paginations},
+        ]
+    },
     {id:_.uniqueId(),title:"数据处理",
         children:[
             {id:_.uniqueId(),title:"Form表单",path:"/FormView",component:FormView},
+            {id:_.uniqueId(),title:"?Tables表",path:"/Tables",component:Tables},
         ]
     },
     {id:_.uniqueId(),title:"反馈",
