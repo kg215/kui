@@ -39,14 +39,14 @@ export const menus:MenuItemTitlesProps[] = [
     },
     {id:_.uniqueId(),title:"导航",
         children:[
-            {id:_.uniqueId(),title:"?Tabs",path:"/Tabs",component:Tabs},
+            {id:_.uniqueId(),title:"Tabs",path:"/Tabs",component:Tabs},
             {id:_.uniqueId(),title:"?Paginations",path:"/Paginations",component:Paginations},
         ]
     },
     {id:_.uniqueId(),title:"数据处理",
         children:[
             {id:_.uniqueId(),title:"Form表单",path:"/FormView",component:FormView},
-            {id:_.uniqueId(),title:"?Tables表",path:"/Tables",component:Tables},
+            {id:_.uniqueId(),title:"?Tables",path:"/Tables",component:Tables},
         ]
     },
     {id:_.uniqueId(),title:"反馈",
@@ -54,6 +54,7 @@ export const menus:MenuItemTitlesProps[] = [
             {id:_.uniqueId(),title:"弹出层",path:"/Modal",component:Modals},
             {id:_.uniqueId(),title:"进度条",path:"/Progresses",component:Progresses},
             {id:_.uniqueId(),title:"消息提示",path:"/Messages",component:Messages},
+            {id:_.uniqueId(),title:"?状态提示",path:"/StatusTip",component:Messages},
         ]
     },
 ];
