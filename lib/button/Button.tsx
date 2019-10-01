@@ -6,13 +6,14 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLDivElement>{
     className?:string,
     onClick?:(e?:MouseEvent<HTMLElement>)=>void,
     children?:ReactNode,
-    style?:React.CSSProperties
+    style?:React.CSSProperties,
+    disabled?:boolean
 }
 export {Button};
 
 const Button:React.FC<ButtonProps>=React.forwardRef((props,ref:React.Ref<HTMLElement>)=>{
-    const {type="default",className,onClick,style} = props;
-    return React.createElement("button",{style:style,ref:ref,onClick:onClick,className:classNames("ks-btn","ks-btn-"+type,className)},props.children) as ReactElement<any>;
+    const {type="default",disabled,className,onClick,style} = props;
+    return React.createElement("button",{disabled,style:style,ref:ref,onClick:onClick,className:classNames("ks-btn","ks-btn-"+type,className)},props.children) as ReactElement<any>;
 });
 Button.displayName="Button";
 
