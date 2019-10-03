@@ -80,6 +80,9 @@ a{
 .text-warn{
   color: @color-warn;
 }
+.text-lv{
+  color: @color-lv;
+}
 .text-default{
   color: @color-default;
 }
@@ -162,6 +165,7 @@ a{
 }
 .ks-btn-link{
   color: @color-primary;
+  padding: 0;
   &:not([disabled]):hover{
     color: @color-link-hover;
   }
@@ -190,6 +194,7 @@ a{
     min-width: 150px;
   }
   .ks-layout__content{
+    overflow: hidden;
     min-width: 350px;
     padding: 20px;
     flex-grow: 1;
@@ -893,7 +898,26 @@ a{
     }
 
     .ks-page_batch{
+      position: relative;
       cursor: pointer;
+      .fa{
+        position: absolute;
+        left: 8px;
+        opacity: 0;
+      }
+      .dot{
+        opacity: 1;
+      }
+      &:hover{
+        .fa{
+          opacity: 1;
+          transition: opacity .5s;
+        }
+        .dot{
+          opacity: 0;
+          transition: opacity .3s;
+        }
+      }
     }
     .ks-page_batch,.ks-page_batch+.ks-page_item,.ks-page_item+.ks-page_item{
       margin-left: 8px;
@@ -909,5 +933,56 @@ a{
     }
   }
 }
-
 /*page end*/
+/*table start*/
+.ks-table{
+  text-align: left;
+  .ks-table_header{
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+      visibility: hidden;
+    }
+  }
+  table{
+    width: 100%;
+    th,td{
+      padding: 16px;
+    }
+    thead{
+      th{
+        background-color: #FAFAFA;
+        border-bottom: 1px solid #E8E8E8;
+        color: @color;
+        font-family: monospace;
+      }
+    }
+    tbody{
+      td{
+        border-bottom: 1px solid #E8E8E8;
+      }
+    }
+  }
+  .table-scroll{
+    overflow-y: scroll;
+    &::-webkit-scrollbar{
+      width: 4px;
+    }
+    &::-webkit-scrollbar-track{
+      background-color: rgba(209, 209, 209, 0);
+      border-radius: 2px;
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color: rgba(132, 132, 132, 0);
+      border-radius: 2px;
+    }
+    &:hover{
+      &::-webkit-scrollbar-track{
+        background-color: rgba(209, 209, 209, 0.75);
+      }
+      &::-webkit-scrollbar-thumb{
+        background-color: rgba(132, 132, 132, 0.75);
+      }
+    }
+  }
+}
+/*table end*/

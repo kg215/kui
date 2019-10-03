@@ -5,7 +5,9 @@ export default class Paginations extends Component{
 
     render(){
         return <Fragment>
-            <Pagination total={100} />
+            <Pagination
+                total={1000}
+            />
         </Fragment>
     }
 }

@@ -71,7 +71,7 @@ export const Pagination:FC<PaginationProps> = function(props){
     },[]);
     return <div className={"ks-page"}>
             <div className={"ks-page_box"}>
-                <Button disabled={pageIndex===1||totalPage===0} onClick={()=>setPageIndex(1)} className={classNames("ks-page_item",{
+                <Button disabled={pageIndex===1||totalPage===0}  onClick={()=>setPageIndex(1)} className={classNames("ks-page_item",{
                     "disabled":pageIndex===1||totalPage===0
                 })} >
                     <Icon type={"angle-double-left"} />
@@ -81,8 +81,9 @@ export const Pagination:FC<PaginationProps> = function(props){
                 })} >
                     <Icon type={"angle-left"} />
                 </Button>
-                {start>1&&<span className={"ks-page_batch ks-page_batch_prev"}>
-                    •••
+                {start>1&&<span onClick={()=>{setPageIndex(pageIndex-gap)}} className={"ks-page_batch ks-page_batch_prev"}>
+                    <Icon type={"angle-double-left"} />
+                    <span className={"dot"}>•••</span>
                 </span>}
                 {
                     pageSpan.map(page=><span key={"page"+page} className={
@@ -95,8 +96,9 @@ export const Pagination:FC<PaginationProps> = function(props){
                         {page}
                     </span>)
                 }
-                {end<totalPage&&<span className={"ks-page_batch ks-page_batch_next"}>
-                    •••
+                {end<totalPage&&<span onClick={()=>{setPageIndex(pageIndex+gap)}} className={"ks-page_batch ks-page_batch_next"}>
+                    <Icon type={"angle-double-right"} />
+                    <span className={"dot"}>•••</span>
                 </span>}
                 <Button disabled={pageIndex===totalPage} onClick={next} className={classNames("ks-page_item",{
                     "disabled":pageIndex===totalPage
