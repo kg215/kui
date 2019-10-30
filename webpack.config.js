@@ -1,11 +1,20 @@
-/* eslint-disable no-undef */
 const path = require("path");
+const os = require("os");
+
+//打包速度显示
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+
+//多核打包
+const HappyPack = require("happypack");
+const HappyPackThreadPool = HappyPack.ThreadPool({size:os.cpus().length});
 
 const {CleanWebpackPlugin}=require("clean-webpack-plugin");
 const HtmlWebpackPlugin= require("html-webpack-plugin");
 const WebpackDevServerOutput = require("webpack-dev-server-output");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const mode = "development";
+
+const mode = process.env.NODE_ENV || "development";
 
 const dist = path.resolve(__dirname,"./dist");
 function getBabelOptions(env) {
@@ -19,7 +28,8 @@ function getBabelOptions(env) {
 				},
 				useBuiltIns:"usage",
 			}]
-			, require("@babel/preset-react"),require("@babel/preset-typescript")],
+			, require("@babel/preset-react")
+            , require("@babel/preset-typescript")],
 		plugins: [
 			[require("@babel/plugin-proposal-decorators"), {legacy: true}],
 			[require("@babel/plugin-proposal-class-properties")],
@@ -27,9 +37,7 @@ function getBabelOptions(env) {
 			[require("@babel/plugin-proposal-optional-chaining")],
 		],
 		// 缓存 loader 结果，可提高编译性能
-		// build 时由于要扫描组件使用情况，所以不使用缓存
 		cacheDirectory: env === "development",
-		// 维持行号，否则 Webpack 异常消息中的行号不正确
 		retainLines: true,
 	};
 }
@@ -38,7 +46,7 @@ const babelOpts = getBabelOptions(mode);
 const srcPath = (subDir)=>{
 	return path.join(__dirname, "src", subDir);
 };
-module.exports = {
+const webpackConfig = {
 	mode:mode,
 	entry:{
 		app:"./src/index.tsx",
@@ -77,9 +85,8 @@ module.exports = {
 				}
 			},
 		},
-		runtimeChunk: {
-			name: entrypoint => `${entrypoint.name}`
-		}
+		runtimeChunk: true,
+        minimize:true
 	},
 	resolveLoader:{
 		modules: [
@@ -90,15 +97,10 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.jsx?/,
+				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				use: [
-					{
-						loader: "babel-loader",
-						options: babelOpts
-					}
-				]
-			},
+                loader: "happypack/loader?id=jsx"
+            },
 			{
 				enforce: "pre",
 				test: /\.js$/,
@@ -152,5 +154,28 @@ module.exports = {
 			chunkFilename: "style/[name].css",
 			ignoreOrder: false,
 		}),
-	]
+        new HappyPack({
+            id:"jsx",
+            loaders:[
+                {
+                    loader: "babel-loader",
+                    options: babelOpts
+                }
+            ],
+            threadPool:HappyPackThreadPool
+        }),
+        new HappyPack({
+            id:"tsx",
+            loaders:[
+                {
+                    loader:"babel-loader",
+                    options: babelOpts
+                },"ts-loader"
+            ],
+            threadPool:HappyPackThreadPool
+        })
+	],
+    stats: "errors-only"
 };
+
+module.exports = smp.wrap(webpackConfig);
