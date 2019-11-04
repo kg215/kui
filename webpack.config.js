@@ -127,7 +127,9 @@ const webpackConfig = {
 			chunkFilename: "style/[name].css",
 			ignoreOrder: false
 		}),
-        new BundleAnalyzerPlugin()
+        new BundleAnalyzerPlugin({
+            openAnalyzer:false
+        })
 	]
 };
 
