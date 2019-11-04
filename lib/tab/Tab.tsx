@@ -1,7 +1,5 @@
 import React, {FC, Fragment, useCallback, useEffect, useMemo, useState} from 'react';
 import classNames from "classnames";
-import set = Reflect.set;
-import {func} from "prop-types";
 interface TabWrapperProps {
     checkedKey?: string;
     onChange?: (checkedKey:TabWrapperProps["checkedKey"])=>void;

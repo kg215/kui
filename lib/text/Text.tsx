@@ -1,10 +1,6 @@
 import React, {FC} from "react";
 import classNames from "classnames";
-import {StyledProps} from "../_type";
-
-export interface TextProps extends StyledProps{
-    theme?:"danger"|"warn"|"primary"|"default";
-}
+import {TextProps} from "../_type";
 
 export const Text:FC<TextProps> = function (props) {
     const {theme="default"}=props;

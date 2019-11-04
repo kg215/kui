@@ -5,7 +5,7 @@ let checkBoxName=_.uniqueId("checkbox");
 export interface checkboxProps extends Omit<InputProps,"onChange"|"defaultValue"|"value">{
     text?:string;
     component?:ReactNode;
-    onChange?:(value:boolean,{event}?:{event:ChangeEvent<HTMLInputElement>})=>void;
+    onChange?:(value:boolean,{event}:{event?:ChangeEvent<HTMLInputElement>})=>void;
 }
 const CheckBoxOne:RefForwardingComponent<HTMLInputElement,checkboxProps> = forwardRef(function({
     text,
@@ -31,7 +31,7 @@ interface CheckBoxGroupProps<T=string|number> extends Omit<InputProps,"onChange"
     defaultValue?:T[];
     value?:T[];
     options?:optionsProps<T>[];
-    onChange?:(value:T[],{event}?:{event:ChangeEvent<HTMLInputElement>})=>void;
+    onChange?:(value:T[],{event}:{event?:ChangeEvent<HTMLInputElement>})=>void;
 }
 
 export const CheckBoxGroup:FC<CheckBoxGroupProps>=function({

@@ -11,7 +11,6 @@ import React, {
 import {StyledProps} from "../_type";
 import classNames from "classnames";
 import {CheckBox} from "./CheckBox";
-import {func} from "prop-types";
 export interface optionsProps<T=string|number>{
     text?:T;
     component?:ReactNode;
@@ -26,7 +25,7 @@ export interface InputProps extends StyledProps,Omit<
     defaultValue?:string|number;
     value?:string|number;
     status?:"error"|"success"|"none";
-    onChange?:(value:string,{event}?:{event:ChangeEvent<HTMLInputElement>|ChangeEvent<HTMLTextAreaElement>})=>void;
+    onChange?:(value:string,{event}:{event?:ChangeEvent<HTMLInputElement>|ChangeEvent<HTMLTextAreaElement>})=>void;
 }
 
 export const Input:RefForwardingComponent<HTMLInputElement|HTMLTextAreaElement,InputProps> = forwardRef(function (props,ref) {

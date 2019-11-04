@@ -1,13 +1,11 @@
 const path = require("path");
-const os = require("os");
 
-//打包速度显示
+//显示打包速度
 const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
 const smp = new SpeedMeasurePlugin();
 
-//多核打包
-const HappyPack = require("happypack");
-const HappyPackThreadPool = HappyPack.ThreadPool({size:os.cpus().length});
+//查看bundle大小的工具
+const {BundleAnalyzerPlugin} = require("webpack-bundle-analyzer");
 
 const {CleanWebpackPlugin}=require("clean-webpack-plugin");
 const HtmlWebpackPlugin= require("html-webpack-plugin");
@@ -15,34 +13,9 @@ const WebpackDevServerOutput = require("webpack-dev-server-output");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const mode = process.env.NODE_ENV || "development";
+const isDev = mode==="development";
 
 const dist = path.resolve(__dirname,"./dist");
-function getBabelOptions(env) {
-	return {
-		envName: env,
-		// 业界通用 preset
-		presets: [
-			[require("@babel/preset-env"),{
-				"targets": {
-					"node": "current",
-				},
-				useBuiltIns:"usage",
-			}]
-			, require("@babel/preset-react")
-            , require("@babel/preset-typescript")],
-		plugins: [
-			[require("@babel/plugin-proposal-decorators"), {legacy: true}],
-			[require("@babel/plugin-proposal-class-properties")],
-			[require("@babel/plugin-syntax-dynamic-import")],
-			[require("@babel/plugin-proposal-optional-chaining")],
-		],
-		// 缓存 loader 结果，可提高编译性能
-		cacheDirectory: env === "development",
-		retainLines: true,
-	};
-}
-
-const babelOpts = getBabelOptions(mode);
 const srcPath = (subDir)=>{
 	return path.join(__dirname, "src", subDir);
 };
@@ -55,10 +28,11 @@ const webpackConfig = {
 		path: dist,
 		filename: "[name].[hash:10].js",
 		chunkFilename: "[name].[hash:10].js",
-		publicPath: "http://127.0.0.1:9999"
+		publicPath: "http://127.0.0.1:9999/"
 	},
 	devServer:{
 		contentBase:"./dist",  //服务访问的根目录
+        host:"localhost",
 		inline: true,
 		port:9999,
 		open:false, //打包后是否自动打开
@@ -70,19 +44,23 @@ const webpackConfig = {
 		},
 	},
 	optimization: {
-		namedModules: true, //取代插件中的 new webpack.NamedModulesPlugin()
-		namedChunks: true,
-		splitChunks: { //取代 webpack.optimize.CommonsChunkPlugin
-			minSize:1,
-			minChunks:1,
-			maxAsyncRequests:1,
-			chunks: "all",
-			automaticNameDelimiter: "_",
+		namedModules: isDev,
+		namedChunks: isDev,
+		splitChunks: {
 			cacheGroups: {
-				vendors: {
-					test: /[\\/]node_modules[\\/]/,
-					priority: 1
-				}
+                commons: {
+                    name: 'commons',
+                    chunks: 'all',
+                    minChunks: 2
+                },
+                vendor: {
+                    test: /node_modules/,
+                    chunks: "initial",
+                    name: "vendor",
+                    priority: 10,
+                    enforce: true
+                },
+                default: false
 			},
 		},
 		runtimeChunk: true,
@@ -97,11 +75,6 @@ const webpackConfig = {
 	module: {
 		rules: [
 			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-                loader: "happypack/loader?id=jsx"
-            },
-			{
 				enforce: "pre",
 				test: /\.js$/,
 				loader: "source-map-loader"
@@ -109,18 +82,15 @@ const webpackConfig = {
 			{
 				test:/\.tsx?$/,
 				exclude: /node_modules/,
-				loader: [{
-					loader:"babel-loader",
-					options: babelOpts
-				},"ts-loader"]
+                use:["thread-loader","babel-loader"]
 			},
 			{
 				test:/\.(le|c)ss$/,
 				use:[
-					{
+                    {
 						loader:MiniCssExtractPlugin.loader,
 						options: {
-							publicPath: "./style",
+							publicPath: "../",
 							hmr: process.env.NODE_ENV === "development",
 						},
 					},
@@ -130,12 +100,15 @@ const webpackConfig = {
 				]
 			}, {
 				test: /\.(png|woff|woff2|svg|ttf|eot)$/,
-				use: {
-					loader: "url-loader",
-					options: {
-						limit: 100000,  //这里要足够大这样所有的字体图标都会打包到css中
-					}
-				}
+				use: [
+                    {
+                        loader: "url-loader",
+                        options: {
+                            limit: 100,
+                            name:"files/[name].[hash].[ext]"
+                        }
+                    }
+                ]
 			}
 		]
 	},
@@ -152,30 +125,10 @@ const webpackConfig = {
 		new MiniCssExtractPlugin({
 			filename: "style/[name].css",
 			chunkFilename: "style/[name].css",
-			ignoreOrder: false,
+			ignoreOrder: false
 		}),
-        new HappyPack({
-            id:"jsx",
-            loaders:[
-                {
-                    loader: "babel-loader",
-                    options: babelOpts
-                }
-            ],
-            threadPool:HappyPackThreadPool
-        }),
-        new HappyPack({
-            id:"tsx",
-            loaders:[
-                {
-                    loader:"babel-loader",
-                    options: babelOpts
-                },"ts-loader"
-            ],
-            threadPool:HappyPackThreadPool
-        })
-	],
-    stats: "errors-only"
+        new BundleAnalyzerPlugin()
+	]
 };
 
 module.exports = smp.wrap(webpackConfig);

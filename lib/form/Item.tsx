@@ -1,7 +1,7 @@
 import React, {FC, ReactNode} from "react";
 import classNames from "classnames";
-import {Text,TextProps} from "../text";
-import {StyledProps} from "../_type";
+import {Text} from "../text";
+import {StyledProps,TextProps} from "../_type";
 
 interface ItemProps extends StyledProps{
     required?:boolean;
@@ -11,7 +11,7 @@ interface ItemProps extends StyledProps{
 }
 export const Item:FC<ItemProps>=function(props){
     const {label,children,status="none",message="",required=false}=props;
-    let theme:TextProps["theme"]="default";
+    let theme:TextProps['theme']="default";
     if(status==="error"){
         theme="danger";
     }
