@@ -4,13 +4,8 @@
   "main": "src/index.tsx",
   "license": "MIT",
   "scripts": {
-<<<<<<< HEAD
     "start": "webpack-dev-server --config webpack.config.js",
     "build": "webpack --config webpack.config.js"
-=======
-    "test": "webpack-dev-server",
-    "build": "webpack --progress"
->>>>>>> 289ae3a16e569a6904cfbc94a0c8b92d262d3ad6
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -68,7 +63,6 @@
     "webpack-dev-server-output": "^0.0.6"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@babel/core": "^7.5.5",
     "@babel/parser": "^7.5.5",
     "@babel/plugin-proposal-decorators": "^7.4.4",
@@ -83,9 +77,6 @@
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
     "react": "^16.13.1",
-=======
-    "react": "^16.9.0",
->>>>>>> 289ae3a16e569a6904cfbc94a0c8b92d262d3ad6
     "react-dom": "^16.9.0",
     "react-dropzone": "^10.1.9",
     "react-router": "^5.0.1",
