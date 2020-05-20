@@ -4,7 +4,7 @@
   "main": "src/index.tsx",
   "license": "MIT",
   "scripts": {
-    "test": "webpack-dev-server --config webpack.config.js",
+    "start": "webpack-dev-server --config webpack.config.js",
     "build": "webpack --config webpack.config.js"
   },
   "devDependencies": {
@@ -59,7 +59,7 @@
     "@types/react-router-dom": "^4.3.5",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "react": "^16.9.0",
+    "react": "^16.13.1",
     "react-dom": "^16.9.0",
     "react-dropzone": "^10.1.9",
     "react-router": "^5.0.1",

@@ -11,17 +11,17 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules", "./lib/*", "./src/*"],
+      "view/*": ["view/*"]
+    }
   },
   "checkJs": true,
-  "include": ["src","lib"],
+  "include": ["src", "lib"],
   "exclude": [
     "node_modules"
   ],
-  "baseUrl": {
-    "description": "src"
-  },
-  "paths": {
-    "view/*": [ "view/*" ]
-  }
+
 }
