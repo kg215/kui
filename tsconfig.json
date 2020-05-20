@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es2017", "dom"],
+    "lib": ["es2016", "dom"],
     "experimentalDecorators": true,
     "rootDir": ".",
     "outDir": "dist",

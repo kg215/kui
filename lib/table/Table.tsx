@@ -1,22 +1,23 @@
 import React, {FC} from "react";
-import classNames = require("classnames");
-interface RecordsProps{
+import classNames from "classnames";
+export interface RecordsProps{
     [key:string]:any
 }
+
 interface ColsProps {
     key:string;
     title?:string;
     render?:(item:RecordsProps)=>void;
     width?:string|number;
 }
-interface scrollAbleProps{
+interface ScrollAbleProps{
     height?:string|number;
     style?:React.CSSProperties
 }
 interface TableProps{
     cols:ColsProps[];
     records:RecordsProps[];
-    scrollAble?:scrollAbleProps;
+    scrollAble?:ScrollAbleProps;
 }
 export const Table:FC<TableProps> = function(
     {

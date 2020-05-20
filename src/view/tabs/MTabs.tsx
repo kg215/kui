@@ -6,7 +6,9 @@ const MTabs = () => {
 
 
   return <div>
+    <Tabs>
 
+    </Tabs>
   </div>
 }
 
